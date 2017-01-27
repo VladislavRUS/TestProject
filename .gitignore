@@ -1,0 +1,5 @@
+angular_1/node_modules
+angular_1/bower_components
+angular_2/node_modules
+angular_2/bower_components
+*.idea

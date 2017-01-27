@@ -1,0 +1,30 @@
+<div class="main-header">
+    <div class="page__row-layout">
+        <div class="main-header__tabs">
+            <div class="main-header__tabs-logo">taskon</div>
+
+            <div class="main-header__tabs-item _active">
+                Задания
+            </div>
+            <div class="main-header__tabs-item">
+                Финансы
+            </div>
+            <div class="main-header__tabs-item">
+                Компания
+            </div>
+            <div class="main-header__tabs-item">
+                Статистика
+            </div>
+        </div>
+
+        <div class="main-header__controls">
+            <span class="main-header__controls-text">Баланс</span>
+
+            <div class="main-header__controls-balance">
+                {{mainHeaderCtrl.balance | currency}}
+            </div>
+            <div class="main-header__controls-user">{{mainHeaderCtrl.userName}}</div>
+            <div class="main-header__controls-about"></div>
+        </div>
+    </div>
+</div>
