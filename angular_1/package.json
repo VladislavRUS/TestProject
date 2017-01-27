@@ -1,0 +1,19 @@
+{
+  "name": "angular_1",
+  "version": "1.0.0",
+  "description": "Test Project",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladislavRUS/TestProject.git"
+  },
+  "author": "Kurochkin Vladislav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladislavRUS/TestProject/issues"
+  },
+  "homepage": "https://github.com/VladislavRUS/TestProject#readme"
+}
