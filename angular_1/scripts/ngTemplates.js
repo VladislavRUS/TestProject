@@ -32,10 +32,10 @@ module.run(['$templateCache', function($templateCache) {
     '        <div class="tasks-layout__tabs">\n' +
     '            <div class="tasks-layout__tabs-item"\n' +
     '                 ng-repeat="taskType in tasksLayoutCtrl.tasks"\n' +
-    '                 ng-class="{\'_active\': taskType.title == tasksLayoutCtrl.currentType}"\n' +
-    '                 ng-click="tasksLayoutCtrl.setCurrentType(taskType.title);">\n' +
+    '                 ng-class="{\'_active\': taskType.type == tasksLayoutCtrl.currentType}"\n' +
+    '                 ng-click="tasksLayoutCtrl.setCurrentType(taskType.type);">\n' +
     '\n' +
-    '                <div class="tasks-layout__tabs-item-text">{{taskType.title}}</div>\n' +
+    '                <div class="tasks-layout__tabs-item-text">{{taskType.type}}</div>\n' +
     '                <div class="tasks-layout__tabs-item-value">{{taskType.arr.length}}</div>\n' +
     '            </div>\n' +
     '        </div>\n' +
@@ -43,12 +43,24 @@ module.run(['$templateCache', function($templateCache) {
     '        <div class="tasks-layout__options">\n' +
     '\n' +
     '            <div class="tasks-layout__options-search">\n' +
-    '                <input class="input" placeholder="Поиск по слову">\n' +
+    '                <input class="input" placeholder="Поиск по слову" ng-model="tasksLayoutCtrl.searchValue">\n' +
     '            </div>\n' +
     '\n' +
-    '            <div class="tasks-layout__options-checkbox">Персональное</div>\n' +
-    '            <div class="tasks-layout__options-checkbox">Ночное</div>\n' +
-    '            <div class="tasks-layout__options-checkbox">Срочное</div>\n' +
+    '            <div class="tasks-layout__options-checkbox"\n' +
+    '                 ng-class="{\'_checked\': tasksLayoutCtrl.personal}"\n' +
+    '                 ng-click="tasksLayoutCtrl.toggleCheckbox(\'personal\');">\n' +
+    '                Персональное\n' +
+    '            </div>\n' +
+    '            <div class="tasks-layout__options-checkbox"\n' +
+    '                 ng-class="{\'_checked\': tasksLayoutCtrl.night}"\n' +
+    '                 ng-click="tasksLayoutCtrl.toggleCheckbox(\'night\');">\n' +
+    '                Ночное\n' +
+    '            </div>\n' +
+    '            <div class="tasks-layout__options-checkbox"\n' +
+    '                 ng-class="{\'_checked\': tasksLayoutCtrl.rush}"\n' +
+    '                 ng-click="tasksLayoutCtrl.toggleCheckbox(\'rush\');">\n' +
+    '                Срочное\n' +
+    '            </div>\n' +
     '\n' +
     '            <div class="tasks-layout__options-user">Никита Ласточкин</div>\n' +
     '        </div>\n' +
@@ -63,7 +75,7 @@ module.run(['$templateCache', function($templateCache) {
     '            </div>\n' +
     '            <div class="tasks-layout__table-body">\n' +
     '                <div class="tasks-layout__table-row"\n' +
-    '                     ng-repeat="task in tasksLayoutCtrl.currentTasks()">\n' +
+    '                     ng-repeat="task in tasksLayoutCtrl.currentTasks() | filter: tasksLayoutCtrl.filter">\n' +
     '                    <div class="tasks-layout__table-col _w110">{{task.id}}</div>\n' +
     '                    <div class="tasks-layout__table-col _w110">{{task.city}}</div>\n' +
     '                    <div class="tasks-layout__table-col _w600">{{task.title}}</div>\n' +

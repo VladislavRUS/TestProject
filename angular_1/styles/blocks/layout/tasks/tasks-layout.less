@@ -1,8 +1,8 @@
 .tasks-layout {
-    margin-top: 100px;
+    margin-top: 80px;
 
     &__header {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         font-size: 30px;
         font-weight: bold;
     }
@@ -12,16 +12,16 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        margin-bottom: 30px;
+        margin-bottom: 60px;
 
         &:after {
             content: "";
             position: absolute;
-            top: 30px;
+            top: 50px;
             left: -50px;
             right: -50px;
             height: 1px;
-            background-color: black;
+            background-color: @color-white-darker;
         }
 
         &-item {
@@ -29,48 +29,58 @@
             cursor: pointer;
             height: 40px;
             line-height: 40px;
+            user-select: none;
 
-            &:hover {
-                background-color: lightgrey;
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: -11px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background-color: @color-brownish-grey;
+                opacity: 0;
+                z-index: 100;
+                transition: opacity .3s ease;
+            }
+
+            &:hover::after {
+                opacity: 0.6;
             }
 
             &._active {
                 color: black;
+                font-weight: bold;
 
                 &:after {
-                    content: "";
-                    position: absolute;
-                    bottom: -12px;
-                    left: 0;
-                    right: 0;
-                    height: 1px;
-                    background-color: orangered;
-                    z-index: 100;
+                    background-color: @color-pinkish-orange;
+                    opacity: 1;
                 }
             }
 
             &._active &-value {
-                background-color: orangered;
-                border: 1px solid orangered;
+                background-color: @color-pinkish-orange;
+                border: 1px solid @color-pinkish-orange;
                 color: white;
             }
 
             &+& {
-                margin-left: 50px;
+                margin-left: 30px;
             }
 
             &-text {
                 display: inline-block;
                 margin-right: 10px;
                 font-size: 14px;
+                letter-spacing: 1px;
             }
 
             &-value {
-                padding: 0 3px;
+                padding: 1px 5px;
                 display: inline-block;
-                font-size: 10px;
+                font-size: 11px;
                 border: 1px solid black;
-                border-radius: 25%;
+                border-radius: 40%;
                 line-height: 15px;
             }
         }
@@ -84,33 +94,97 @@
         margin-bottom: 30px;
 
         &-search {
-            margin-right: 30px;
+            position: relative;
+            margin-right: 50px;
+            top: -7px;
         }
 
         &-checkbox {
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+
+            &:after {
+                content: "";
+                position: absolute;
+                height: 15px;
+                width: 15px;
+                border: 1px solid @color-white-darker;
+                border-radius: 3px;
+                left: -25px;
+                top: 3px;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                left: -19px;
+                top: 4px;
+                height: 10px;
+                width: 4px;
+                border-top: 0 solid transparent;
+                border-left: 0 solid transparent;
+                border-right: 2px solid @color-pinkish-orange;
+                border-bottom: 2px solid @color-pinkish-orange;
+                transform: rotate(45deg);
+                opacity: 0;
+                transition: opacity .2s ease;
+            }
+
+            &._checked {
+                &:before {
+                    opacity: 1;
+                }
+            }
+
             &+& {
-                margin-left: 20px;
+                margin-left: 50px;
             }
         }
 
         &-user {
-            margin-left: 20px;
+            margin-left: 30px;
+            font-weight: bold;
+
+            &:after {
+
+            }
         }
     }
 
     &__table {
         &-row {
+            position: relative;
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
+            padding: 15px 0;
+            cursor: pointer;
+            transition: background-color .2s ease;
 
-            padding: 10px 0;
+            &._head:hover {
+                cursor: default;
+                background-color: white;
+            }
 
-            border-bottom: 1px solid black;
+            &:hover {
+                background-color: @color-warm-grey;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background-color: @color-white-darker;
+            }
         }
 
         &-col {
             text-align: left;
+            padding-left: 5px;
 
             &._w100 {
                 flex-basis: 100px;
@@ -126,8 +200,8 @@
         }
 
         &-row._head &-col {
-            font-size: 10px;
-            color: grey;
+            font-size: 12px;
+            color: #9b9b9b;
         }
     }
 }

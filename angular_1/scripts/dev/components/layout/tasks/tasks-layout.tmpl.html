@@ -5,10 +5,10 @@
         <div class="tasks-layout__tabs">
             <div class="tasks-layout__tabs-item"
                  ng-repeat="taskType in tasksLayoutCtrl.tasks"
-                 ng-class="{'_active': taskType.title == tasksLayoutCtrl.currentType}"
-                 ng-click="tasksLayoutCtrl.setCurrentType(taskType.title);">
+                 ng-class="{'_active': taskType.type == tasksLayoutCtrl.currentType}"
+                 ng-click="tasksLayoutCtrl.setCurrentType(taskType.type);">
 
-                <div class="tasks-layout__tabs-item-text">{{taskType.title}}</div>
+                <div class="tasks-layout__tabs-item-text">{{taskType.type}}</div>
                 <div class="tasks-layout__tabs-item-value">{{taskType.arr.length}}</div>
             </div>
         </div>
@@ -16,12 +16,24 @@
         <div class="tasks-layout__options">
 
             <div class="tasks-layout__options-search">
-                <input class="input" placeholder="Поиск по слову">
+                <input class="input" placeholder="Поиск по слову" ng-model="tasksLayoutCtrl.searchValue">
             </div>
 
-            <div class="tasks-layout__options-checkbox">Персональное</div>
-            <div class="tasks-layout__options-checkbox">Ночное</div>
-            <div class="tasks-layout__options-checkbox">Срочное</div>
+            <div class="tasks-layout__options-checkbox"
+                 ng-class="{'_checked': tasksLayoutCtrl.personal}"
+                 ng-click="tasksLayoutCtrl.toggleCheckbox('personal');">
+                Персональное
+            </div>
+            <div class="tasks-layout__options-checkbox"
+                 ng-class="{'_checked': tasksLayoutCtrl.night}"
+                 ng-click="tasksLayoutCtrl.toggleCheckbox('night');">
+                Ночное
+            </div>
+            <div class="tasks-layout__options-checkbox"
+                 ng-class="{'_checked': tasksLayoutCtrl.rush}"
+                 ng-click="tasksLayoutCtrl.toggleCheckbox('rush');">
+                Срочное
+            </div>
 
             <div class="tasks-layout__options-user">Никита Ласточкин</div>
         </div>
@@ -36,7 +48,7 @@
             </div>
             <div class="tasks-layout__table-body">
                 <div class="tasks-layout__table-row"
-                     ng-repeat="task in tasksLayoutCtrl.currentTasks()">
+                     ng-repeat="task in tasksLayoutCtrl.currentTasks() | filter: tasksLayoutCtrl.filter">
                     <div class="tasks-layout__table-col _w110">{{task.id}}</div>
                     <div class="tasks-layout__table-col _w110">{{task.city}}</div>
                     <div class="tasks-layout__table-col _w600">{{task.title}}</div>

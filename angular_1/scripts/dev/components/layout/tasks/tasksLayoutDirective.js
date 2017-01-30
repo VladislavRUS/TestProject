@@ -1,4 +1,4 @@
-function tasksLayoutDirective() {
+function tasksLayoutDirective($http) {
     return {
         scope: {},
         bindToController: {},
@@ -6,173 +6,66 @@ function tasksLayoutDirective() {
         controller: function () {
             var self = this;
 
+            self.personal = false;
+            self.night = false;
+            self.rush = false;
+
             self.currentType = '';
 
+            $http.get('../mocks/tasks.json').then(function(resp) {
+                self.tasks = resp.data;
+                self.init();
+            });
+
             self.init = function () {
-                self.currentType = self.tasks[0].title;
+                self.currentType = self.tasks[0].type;
             };
 
             self.currentTasks = function() {
-                return self.tasks.filter(function(task) {
-                    return task.title === self.currentType;
+                if (self.tasks) {
+                    return self.tasks.filter(function(task) {
+                        return task.type === self.currentType;
+                    })[0].arr;
 
-                })[0].arr;
-            };
-            
-            self.tasks = [
-                {
-                    title: 'Новые',
-                    arr: [
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        }
-                    ]
-                },
-                {
-                    title: 'В работе',
-                    arr: [
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        }
-                    ]
-                },
-                {
-                    title: 'На рассмотрении',
-                    arr: [
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        }
-                    ]
-                },
-                {
-                    title: 'Выполнены',
-                    arr: [
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        }
-                    ]
-                },
-                {
-                    title: 'Отменены',
-                    arr: [
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        }
-                    ]
-                },
-                {
-                    title: 'Черновики',
-                    arr: [
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        },
-                        {
-                            id: '123456',
-                            city: 'Самара',
-                            title: 'Подключение провода от клеммной коробки пожарной сигнализации к расцепителю, проверить работоспособность',
-                            till: '2016-08-13',
-                            sum: '10021'
-                        }
-                    ]
+                } else {
+                    return [];
                 }
+            };
 
-            ];
+            self.filter = function(task) {
+                if (!self.searchValue) {
+                    if (self.night || self.personal || self.rush) {
+                        return task.night === self.night || task.personal === self.personal || task.rush === self.rush;
 
-            self.init();
+                    } else {
+                        return true;
+                    }
+
+                } else {
+                    return (task.title.includes(self.searchValue) || task.city.includes(self.searchValue));
+                }
+            };
+
+            self.toggleCheckbox = function(type) {
+                switch(type) {
+                    case 'personal': {
+                        self.personal = !self.personal;
+                        break;
+                    }
+                    case 'night': {
+                        self.night = !self.night;
+                        break;
+                    }
+                    case 'rush': {
+                        self.rush = !self.rush;
+                        break;
+                    }
+                }
+            };
+
+            self.setCurrentType = function(title) {
+                self.currentType = title;
+            };
         },
         controllerAs: 'tasksLayoutCtrl'
     }
