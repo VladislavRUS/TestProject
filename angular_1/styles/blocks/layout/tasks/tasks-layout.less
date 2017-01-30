@@ -1,0 +1,133 @@
+.tasks-layout {
+    margin-top: 100px;
+
+    &__header {
+        margin-bottom: 30px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    &__tabs {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-bottom: 30px;
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: -50px;
+            right: -50px;
+            height: 1px;
+            background-color: black;
+        }
+
+        &-item {
+            position: relative;
+            cursor: pointer;
+            height: 40px;
+            line-height: 40px;
+
+            &:hover {
+                background-color: lightgrey;
+            }
+
+            &._active {
+                color: black;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: -12px;
+                    left: 0;
+                    right: 0;
+                    height: 1px;
+                    background-color: orangered;
+                    z-index: 100;
+                }
+            }
+
+            &._active &-value {
+                background-color: orangered;
+                border: 1px solid orangered;
+                color: white;
+            }
+
+            &+& {
+                margin-left: 50px;
+            }
+
+            &-text {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 14px;
+            }
+
+            &-value {
+                padding: 0 3px;
+                display: inline-block;
+                font-size: 10px;
+                border: 1px solid black;
+                border-radius: 25%;
+                line-height: 15px;
+            }
+        }
+    }
+
+    &__options {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-bottom: 30px;
+
+        &-search {
+            margin-right: 30px;
+        }
+
+        &-checkbox {
+            &+& {
+                margin-left: 20px;
+            }
+        }
+
+        &-user {
+            margin-left: 20px;
+        }
+    }
+
+    &__table {
+        &-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+
+            padding: 10px 0;
+
+            border-bottom: 1px solid black;
+        }
+
+        &-col {
+            text-align: left;
+
+            &._w100 {
+                flex-basis: 100px;
+            }
+
+            &._w110 {
+                flex-basis: 110px;
+            }
+
+            &._w600 {
+                flex-basis: 600px;
+            }
+        }
+
+        &-row._head &-col {
+            font-size: 10px;
+            color: grey;
+        }
+    }
+}

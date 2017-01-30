@@ -25,7 +25,55 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('scripts/dev/components/layout/tasks/tasks-layout.tmpl.html',
-    '');
+    '<div class="page__row-layout">\n' +
+    '    <div class="tasks-layout">\n' +
+    '        <div class="tasks-layout__header">Задания</div>\n' +
+    '\n' +
+    '        <div class="tasks-layout__tabs">\n' +
+    '            <div class="tasks-layout__tabs-item"\n' +
+    '                 ng-repeat="taskType in tasksLayoutCtrl.tasks"\n' +
+    '                 ng-class="{\'_active\': taskType.title == tasksLayoutCtrl.currentType}"\n' +
+    '                 ng-click="tasksLayoutCtrl.setCurrentType(taskType.title);">\n' +
+    '\n' +
+    '                <div class="tasks-layout__tabs-item-text">{{taskType.title}}</div>\n' +
+    '                <div class="tasks-layout__tabs-item-value">{{taskType.arr.length}}</div>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '\n' +
+    '        <div class="tasks-layout__options">\n' +
+    '\n' +
+    '            <div class="tasks-layout__options-search">\n' +
+    '                <input class="input" placeholder="Поиск по слову">\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <div class="tasks-layout__options-checkbox">Персональное</div>\n' +
+    '            <div class="tasks-layout__options-checkbox">Ночное</div>\n' +
+    '            <div class="tasks-layout__options-checkbox">Срочное</div>\n' +
+    '\n' +
+    '            <div class="tasks-layout__options-user">Никита Ласточкин</div>\n' +
+    '        </div>\n' +
+    '\n' +
+    '        <div class="tasks-layout__table">\n' +
+    '            <div class="tasks-layout__table-row _head">\n' +
+    '                <div class="tasks-layout__table-col _w110">ID</div>\n' +
+    '                <div class="tasks-layout__table-col _w110">Город</div>\n' +
+    '                <div class="tasks-layout__table-col _w600">Название</div>\n' +
+    '                <div class="tasks-layout__table-col _w110">Выполнить до</div>\n' +
+    '                <div class="tasks-layout__table-col _w110">Сумма</div>\n' +
+    '            </div>\n' +
+    '            <div class="tasks-layout__table-body">\n' +
+    '                <div class="tasks-layout__table-row"\n' +
+    '                     ng-repeat="task in tasksLayoutCtrl.currentTasks()">\n' +
+    '                    <div class="tasks-layout__table-col _w110">{{task.id}}</div>\n' +
+    '                    <div class="tasks-layout__table-col _w110">{{task.city}}</div>\n' +
+    '                    <div class="tasks-layout__table-col _w600">{{task.title}}</div>\n' +
+    '                    <div class="tasks-layout__table-col _w110">{{task.till | date}}</div>\n' +
+    '                    <div class="tasks-layout__table-col _w110">{{task.sum | currency}}</div>\n' +
+    '                </div>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>');
 }]);
 })();
 

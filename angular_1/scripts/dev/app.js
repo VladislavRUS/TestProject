@@ -18,4 +18,5 @@ angular.module('app')
     .controller('TasksController', TasksController);
 
 angular.module('app')
-    .directive('mainHeader', mainHeaderDirective);
+    .directive('mainHeader', mainHeaderDirective)
+    .directive('tasksLayout', tasksLayoutDirective);

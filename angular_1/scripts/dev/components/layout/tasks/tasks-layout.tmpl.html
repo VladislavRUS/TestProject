@@ -1,17 +1,49 @@
 <div class="page__row-layout">
-    <div class="tasks-layout__header"></div>
-    <div class="tasks-layout__tabs">
-        <div class="tasks-layout__tabs-item">Новые</div>
-        <div class="tasks-layout__tabs-item">В работе</div>
-        <div class="tasks-layout__tabs-item">На рассмотрении</div>
-        <div class="tasks-layout__tabs-item">Выполнены</div>
-        <div class="tasks-layout__tabs-item">Отменены</div>
-        <div class="tasks-layout__tabs-item">Черновики</div>
-    </div>
+    <div class="tasks-layout">
+        <div class="tasks-layout__header">Задания</div>
 
-    <div class="tasks-layout__options"></div>
+        <div class="tasks-layout__tabs">
+            <div class="tasks-layout__tabs-item"
+                 ng-repeat="taskType in tasksLayoutCtrl.tasks"
+                 ng-class="{'_active': taskType.title == tasksLayoutCtrl.currentType}"
+                 ng-click="tasksLayoutCtrl.setCurrentType(taskType.title);">
 
-    <div class="tasks-layout__table">
-        <div class="tasks-layout__row"></div>
+                <div class="tasks-layout__tabs-item-text">{{taskType.title}}</div>
+                <div class="tasks-layout__tabs-item-value">{{taskType.arr.length}}</div>
+            </div>
+        </div>
+
+        <div class="tasks-layout__options">
+
+            <div class="tasks-layout__options-search">
+                <input class="input" placeholder="Поиск по слову">
+            </div>
+
+            <div class="tasks-layout__options-checkbox">Персональное</div>
+            <div class="tasks-layout__options-checkbox">Ночное</div>
+            <div class="tasks-layout__options-checkbox">Срочное</div>
+
+            <div class="tasks-layout__options-user">Никита Ласточкин</div>
+        </div>
+
+        <div class="tasks-layout__table">
+            <div class="tasks-layout__table-row _head">
+                <div class="tasks-layout__table-col _w110">ID</div>
+                <div class="tasks-layout__table-col _w110">Город</div>
+                <div class="tasks-layout__table-col _w600">Название</div>
+                <div class="tasks-layout__table-col _w110">Выполнить до</div>
+                <div class="tasks-layout__table-col _w110">Сумма</div>
+            </div>
+            <div class="tasks-layout__table-body">
+                <div class="tasks-layout__table-row"
+                     ng-repeat="task in tasksLayoutCtrl.currentTasks()">
+                    <div class="tasks-layout__table-col _w110">{{task.id}}</div>
+                    <div class="tasks-layout__table-col _w110">{{task.city}}</div>
+                    <div class="tasks-layout__table-col _w600">{{task.title}}</div>
+                    <div class="tasks-layout__table-col _w110">{{task.till | date}}</div>
+                    <div class="tasks-layout__table-col _w110">{{task.sum | currency}}</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
